@@ -10,6 +10,7 @@ public class Moving : MonoBehaviour
     private float duration = 10f;
     private float elapsed;
     private float percentageComplete;
+    int i = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,6 @@ public class Moving : MonoBehaviour
     }
     void FollowPath()
     {
-        int i = 0;
         while (i != points.Length-1)
         {
             transform.position = Vector3.Lerp(startPosition, points[i].transform.position, percentageComplete);
@@ -42,6 +42,7 @@ public class Moving : MonoBehaviour
                 i++;
             }
         }
+        i = 0;
         SwapControls();
     }
 }
