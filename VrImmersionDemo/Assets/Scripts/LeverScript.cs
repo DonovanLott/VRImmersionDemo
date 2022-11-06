@@ -14,7 +14,7 @@ public class LeverScript : MonoBehaviour
         lever = this.gameObject;
     }
 
-    
+
     void Update()
     {
         if (lever.transform.rotation.eulerAngles.x > 60f && lever.transform.rotation.eulerAngles.x < 180f && switchOn == false)
