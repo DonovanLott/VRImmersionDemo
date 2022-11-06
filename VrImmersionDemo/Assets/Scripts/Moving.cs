@@ -43,6 +43,6 @@ public class Moving : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, points[i].transform.position, percentageComplete);
         }
         i = 0;
-        SwapControls();
+        dragged = false;
     }
 }
