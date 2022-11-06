@@ -30,17 +30,17 @@ public class Moving : MonoBehaviour
     }
     public void SwapControls()
     {
-        dragged = !dragged;
+        dragged = true;
     }
     void FollowPath()
     {
         while (i != points.Length-1)
         {
-            transform.position = Vector3.Lerp(startPosition, points[i].transform.position, percentageComplete);
-            if(transform.position == points[i].transform.position)
+            if (transform.position == points[i].transform.position)
             {
                 i++;
             }
+            transform.position = Vector3.Lerp(startPosition, points[i].transform.position, percentageComplete);
         }
         i = 0;
         SwapControls();
