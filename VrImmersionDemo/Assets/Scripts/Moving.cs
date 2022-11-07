@@ -7,24 +7,27 @@ public class Moving : MonoBehaviour
     public GameObject[] points;
     bool dragged;
     private Vector3 startPosition;
-    private float duration = 10f;
+    public float duration = 5f;
     private float elapsed;
-    private float percentageComplete;
+    private float percentageComplete = 0;
     int i = 0;
     // Start is called before the first frame update
     void Start()
     {
         dragged = false;
-        elapsed += Time.deltaTime;
+        //elapsed += Time.deltaTime;
         startPosition = transform.position;
-        percentageComplete = elapsed / duration;
+        //percentageComplete = elapsed / duration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(dragged)
+        
+        if (dragged == true)
         {
+            elapsed += Time.deltaTime;
+            percentageComplete = elapsed / duration;
             FollowPath();
         }
     }
@@ -34,15 +37,22 @@ public class Moving : MonoBehaviour
     }
     void FollowPath()
     {
-        while (i != points.Length-1)
+        if (i <= points.Length - 1)
         {
+            transform.position = Vector3.Lerp(startPosition, points[i].transform.position, percentageComplete);
             if (transform.position == points[i].transform.position)
             {
+                startPosition = points[i].transform.position;
+                elapsed = 0;
                 i++;
             }
-            transform.position = Vector3.Lerp(startPosition, points[i].transform.position, percentageComplete);
         }
-        i = 0;
-        dragged = false;
+        else
+        {
+            i = 0;
+            elapsed = 0;
+            startPosition = transform.position;
+            dragged = false;
+        }
     }
 }
